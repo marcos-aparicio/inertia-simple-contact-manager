@@ -14,12 +14,14 @@ export default function Home({ auth }) {
             <Head title="Home" />
 
             <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
-                            You're logged in!
-                        </div>
-                    </div>
+                <div className="mx-auto max-w-7xl text-center text-xl sm:px-6 lg:px-8">
+                    <p> You don't have any contacts.</p>
+                    <a
+                        href={route("contacts.create")}
+                        className="text-blue-500 underline"
+                    >
+                        Add one!
+                    </a>
                 </div>
             </div>
         </AuthenticatedLayout>
