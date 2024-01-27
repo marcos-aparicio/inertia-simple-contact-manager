@@ -2,7 +2,7 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Link, Head } from "@inertiajs/react";
 import WelcomeHeader from "./Welcome.header";
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+export default function Welcome({ auth }) {
     return (
         <>
             <Head title="Welcome" />
@@ -16,9 +16,12 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         Store your Contacts Now
                     </h1>
 
-                    <a class="mt-5 inline-block rounded bg-white px-4 py-2 dark:bg-slate-700">
+                    <Link
+                        className="mt-5 inline-block rounded bg-white px-4 py-2 font-bold dark:bg-slate-700"
+                        href={route("register")}
+                    >
                         Get Started
-                    </a>
+                    </Link>
                 </div>
             </div>
         </>
