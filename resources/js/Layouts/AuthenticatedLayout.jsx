@@ -28,6 +28,12 @@ export default function Authenticated({ user, header, children }) {
                                 >
                                     Home
                                 </NavLink>
+                                <NavLink
+                                    href={route("contacts.create")}
+                                    active={route().current("contacts.create")}
+                                >
+                                    Add a contact
+                                </NavLink>
                             </div>
                         </div>
 
