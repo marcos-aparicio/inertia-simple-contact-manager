@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/react";
 export default function WelcomeHeader({ auth }) {
     return (
         <div className="flex w-full items-center justify-between bg-slate-800 p-4 text-end sm:fixed sm:right-0 sm:top-0">
-            <ApplicationLogo className="h-12 fill-none stroke-cyan-800" />
+            <ApplicationLogo className="h-12 fill-none stroke-gray-400" />
             <div>
                 {auth.user ? (
                     <Link
