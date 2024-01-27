@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,15 @@ use Inertia\Inertia;
  * |
  */
 
+Route::resource('contacts', ContactController::class)->middleware('auth');
+
+Route::get('/home', function () {
+    return Redirect::route('contacts.index');
+})->middleware(['auth', 'verified'])->name('home');
+
 Route::get('/', function () {
     if (auth()->check()) {
-        return Inertia::render('Home');
+        return Redirect::route('contacts.index');
     }
 
     return Inertia::render('Welcome', [
@@ -26,10 +33,6 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
     ]);
 });
-
-Route::get('/home', function () {
-    return Inertia::render('Home');
-})->middleware(['auth', 'verified'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

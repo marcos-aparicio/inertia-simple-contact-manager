@@ -134,7 +134,7 @@ export default function Authenticated({ user, header, children }) {
                     <div className="space-y-1 pb-3 pt-2">
                         <ResponsiveNavLink
                             href={route("home")}
-                            active={route().current("home")}
+                            active={route().current("contacts.index")}
                         >
                             Home
                         </ResponsiveNavLink>
@@ -168,7 +168,7 @@ export default function Authenticated({ user, header, children }) {
 
             {header && (
                 <header className="bg-white shadow">
-                    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    <div className="mx-auto w-3/4 px-4 py-6 sm:px-6 lg:px-8">
                         {header}
                     </div>
                 </header>

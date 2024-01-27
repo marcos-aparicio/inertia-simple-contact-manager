@@ -1,30 +1,21 @@
-import { useEffect } from "react";
-import Checkbox from "@/Components/Checkbox";
-import GuestLayout from "@/Layouts/GuestLayout";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 
 export default function Create({ auth }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
-        password: "",
-        remember: false,
+        dob: "",
+        phone_number: "",
+        remember: true,
     });
-
-    useEffect(() => {
-        return () => {
-            reset("password");
-        };
-    }, []);
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("login"));
+        post(route("contacts.store"));
     };
 
     return (
@@ -60,7 +51,7 @@ export default function Create({ auth }) {
 
                         <TextInput
                             id="email"
-                            type="email"
+                            type="text"
                             name="email"
                             value={data.email}
                             className="mt-1 block w-full"
@@ -84,10 +75,7 @@ export default function Create({ auth }) {
                             onChange={(e) => setData("dob", e.target.value)}
                         />
 
-                        <InputError
-                            message={errors.password}
-                            className="mt-2"
-                        />
+                        <InputError message={errors.dob} className="mt-2" />
                     </div>
 
                     <div className="mt-4">

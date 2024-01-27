@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreContactRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -32,9 +33,14 @@ class ContactController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreContactRequest $request)
     {
-        //
+        $user_id = auth()->user()->id;
+        $data = $request->validated();
+        $data['user_id'] = $user_id;
+
+        Contact::create($data);
+        return redirect('home');
     }
 
     /**
