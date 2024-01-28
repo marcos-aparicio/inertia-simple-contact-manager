@@ -22,3 +22,5 @@ cp .env.example .env
 php artisan key:generate
 php artisan serve & npm run dev
 ```
+
+See deployed version here [https://contact-manager.marcos-aparicio.xyz/](https://contact-manager.marcos-aparicio.xyz/)
