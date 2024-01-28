@@ -1,4 +1,9 @@
+import { useState } from "react";
+import { DeleteContactModal } from "./DeleteContactModal";
+
 export const ContactCard = ({ contact }) => {
+    const [openRemoveModal, setOpenRemoveModal] = useState(false);
+
     return (
         <a
             href={route("contacts.show", { contact })}
@@ -21,10 +26,19 @@ export const ContactCard = ({ contact }) => {
                 </a>
                 <a
                     className="rounded bg-red-500 p-1 px-2 text-white hover:bg-red-800"
-                    href={route("contacts.destroy", { contact })}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        setOpenRemoveModal(true);
+                    }}
                 >
                     Remove
                 </a>
+
+                <DeleteContactModal
+                    show={openRemoveModal}
+                    setShow={setOpenRemoveModal}
+                    contact={contact}
+                />
             </div>
         </a>
     );

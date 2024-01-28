@@ -1,8 +1,10 @@
+import { DeleteContactModal } from "@/AppComponents/DeleteContactModal";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+
 const Show = ({ auth, contact }) => {
-    console.log(contact);
+    const [openRemoveModal, setOpenRemoveModal] = useState(false);
 
     const age = useMemo(() => {
         const timeDiff = Math.abs(Date.now() - new Date(contact.dob).getTime());
@@ -40,10 +42,15 @@ const Show = ({ auth, contact }) => {
                     </a>
                     <a
                         className="rounded bg-red-500 p-1 px-2 text-white hover:bg-red-800"
-                        href={route("contacts.destroy", { contact })}
+                        onClick={() => setOpenRemoveModal(true)}
                     >
                         Remove
                     </a>
+                    <DeleteContactModal
+                        show={openRemoveModal}
+                        setShow={setOpenRemoveModal}
+                        contact={contact}
+                    />
                 </div>
             </div>
         </AuthenticatedLayout>
