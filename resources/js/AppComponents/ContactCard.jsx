@@ -1,6 +1,9 @@
 export const ContactCard = ({ contact }) => {
     return (
-        <div className="flex w-full flex-col items-center justify-center gap-2 rounded-lg bg-white p-2 py-3 shadow-lg">
+        <a
+            href={route("contacts.show", { contact })}
+            className="flex w-full flex-col items-center justify-center gap-2 rounded-lg bg-white p-2 py-3 shadow-lg hover:bg-gray-200"
+        >
             <h1 className="text-2xl font-bold capitalize">{contact.name}</h1>
             <a
                 href={`tel:${contact.phone_number}`}
@@ -23,6 +26,6 @@ export const ContactCard = ({ contact }) => {
                     Remove
                 </a>
             </div>
-        </div>
+        </a>
     );
 };
