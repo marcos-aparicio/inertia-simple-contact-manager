@@ -74,7 +74,8 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
         $this->authorize('delete', $contact);
+        Contact::destroy($contact->id);
+        return redirect('home');
     }
 }
