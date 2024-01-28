@@ -48,7 +48,8 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        $this->authorize('view', $contact);
+        return Inertia::render('Contacts/Show', compact('contact'));
     }
 
     /**
@@ -65,6 +66,7 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {
         //
+        $this->authorize('update', $contact);
     }
 
     /**
@@ -73,5 +75,6 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         //
+        $this->authorize('delete', $contact);
     }
 }
