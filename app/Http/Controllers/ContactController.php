@@ -57,16 +57,18 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        $this->authorize('update', $contact);
+        return Inertia::render('Contacts/Edit', compact('contact'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Contact $contact)
+    public function update(StoreContactRequest $request, Contact $contact)
     {
-        //
         $this->authorize('update', $contact);
+        $contact->update($request->validated());
+        return redirect('home');
     }
 
     /**
