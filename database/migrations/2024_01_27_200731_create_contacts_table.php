@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('email');
             $table->string('phone_number');
             $table->foreignIdFor(User::class);
-            $table->date('dob');
+            $table->date('dob')->nullable();
             $table->timestamps();
         });
     }
