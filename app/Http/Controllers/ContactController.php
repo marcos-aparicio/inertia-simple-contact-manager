@@ -39,9 +39,10 @@ class ContactController extends Controller
         $data = $request->validated();
         $data['user_id'] = $user_id;
 
-        Contact::create($data);
+        $contact = Contact::create($data);
         return redirect('contacts')->with([
             'message' => 'Contact created successfully',
+            'id' => $contact->id
         ]);
     }
 
@@ -70,7 +71,11 @@ class ContactController extends Controller
     {
         $this->authorize('update', $contact);
         $contact->update($request->validated());
-        return redirect('contacts')->with(['type' => 'info', 'message' => 'Contact updated successfully']);
+        return redirect('contacts')->with([
+            'type' => 'info',
+            'message' => 'Contact updated successfully',
+            'id' => $contact->id
+        ]);
     }
 
     /**
@@ -80,6 +85,10 @@ class ContactController extends Controller
     {
         $this->authorize('delete', $contact);
         Contact::destroy($contact->id);
-        return redirect('contacts')->with(['type' => 'info', 'message' => 'Contact deleted successfully']);
+        return redirect('contacts')->with([
+            'type' => 'info',
+            'message' => 'Contact deleted successfully',
+            'id' => $contact->id
+        ]);
     }
 }

@@ -1,5 +1,5 @@
 import { Icon } from "@/Components/Icon";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const typeBG = {
     success: "bg-emerald-300",
@@ -61,12 +61,11 @@ export const FlashMessage = ({ message, type }) => {
         <div
             className={`${args.bg} py-4 rounded-lg  px-12 w-fit flex justify-evenly  font-bold gap-4 mx-auto items-center text-gray-700 relative ${dNone}`}
         >
-            <Icon
-                className="absolute right-1 top-1 h-5 w-5 cursor-pointer hover:text-gray-400"
-                onClick={() => setDNone("hidden")}
-            >
-                {typeIcon["close"]}
-            </Icon>
+            <button onClick={() => setDNone("hidden")}>
+                <Icon className="absolute right-1 top-1 h-5 w-5 cursor-pointer hover:text-gray-400">
+                    {typeIcon["close"]}
+                </Icon>
+            </button>
 
             <Icon className="h-8 w-8">{args.icon}</Icon>
             <h1>{message}</h1>
