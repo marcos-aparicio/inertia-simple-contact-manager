@@ -1,6 +1,6 @@
-import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Link, Head } from "@inertiajs/react";
 import WelcomeHeader from "./Welcome.header";
+import { appName } from "@/app";
 
 export default function Welcome({ auth }) {
     return (
@@ -10,7 +10,7 @@ export default function Welcome({ auth }) {
                 <WelcomeHeader auth={auth} />
                 <div className="flex w-full grow flex-col items-center justify-center gap-5 bg-[url('../img/light_background.jpg')] px-2 text-center sm:gap-3">
                     <h1 className="text-4xl font-bold sm:text-6xl">
-                        Contactopia
+                        {appName ?? "Contact Manager"}
                     </h1>
                     <h1 className="text-2xl font-bold sm:text-4xl">
                         Store your Contacts Now
