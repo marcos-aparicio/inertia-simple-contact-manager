@@ -14,10 +14,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
-        $user_id = auth()->user()->id;
         return Inertia::render('Contacts/Index', [
-            'contacts' => Contact::where('user_id', $user_id)->get()
+            'contacts' => auth()->user()->contacts
         ]);
     }
 
@@ -35,14 +33,12 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        $user_id = auth()->user()->id;
-        $data = $request->validated();
-        $data['user_id'] = $user_id;
-
-        $contact = Contact::create($data);
+        Contact::create([
+            ...$request->validated(),
+            'user_id' => auth()->user()->id
+        ]);
         return redirect('contacts')->with([
             'message' => 'Contact created successfully',
-            'id' => $contact->id
         ]);
     }
 
@@ -74,7 +70,6 @@ class ContactController extends Controller
         return redirect('contacts')->with([
             'type' => 'info',
             'message' => 'Contact updated successfully',
-            'id' => $contact->id
         ]);
     }
 
@@ -88,7 +83,6 @@ class ContactController extends Controller
         return redirect('contacts')->with([
             'type' => 'info',
             'message' => 'Contact deleted successfully',
-            'id' => $contact->id
         ]);
     }
 }
