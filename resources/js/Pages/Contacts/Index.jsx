@@ -19,7 +19,7 @@ export default function Index({ auth, contacts }) {
             </h1>
             <div className="grid-flow-rows mx-auto grid w-3/4 grid-cols-1 justify-between justify-items-center gap-14 pb-6 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-5">
                 {contacts.length < 1 ? (
-                    <div className="mx-auto max-w-7xl text-center text-xl sm:px-6 lg:px-8">
+                    <div className="col-span-full flex flex-col justify-center self-center justify-self-center text-center">
                         <p> You don't have any contacts.</p>
                         <a
                             href={route("contacts.create")}
@@ -29,28 +29,7 @@ export default function Index({ auth, contacts }) {
                         </a>
                     </div>
                 ) : (
-                    <>
-                        {contacts.map((contact) => (
-                            <>
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                                <ContactCard contact={contact} />
-                            </>
-                        ))}
-                    </>
+                    contacts.map((contact) => <ContactCard contact={contact} />)
                 )}
             </div>
         </AuthenticatedLayout>
