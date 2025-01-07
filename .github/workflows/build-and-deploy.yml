@@ -1,9 +1,9 @@
 name: Build and deploy Application
 
 on:
-  push:
-    branches:
-      - prod
+  release:
+    types:
+      - published
   workflow_dispatch:
 
 env:
@@ -96,9 +96,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script_stop: true
           script: |
-            # Create a symbolic link to the public_html folder
+            # Create a symbolic link to the public folder
             source=$(realpath "${{ env.REMOTE_LARAVEL_PATH }}")/"${{ env.PROJECT_NAME }}"/public
-            target="$HOME/domains/tasktango.marcos-aparicio.xyz/public_html"
+            target="$HOME/domains/marcos-aparicio.xyz/public_html/contact-manager"
 
             if [ "$(readlink $target)" != "$source" ]; then
               unlink $target || rm $target
