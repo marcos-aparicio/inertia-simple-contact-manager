@@ -1,9 +1,6 @@
 name: Build and deploy Application
 
 on:
-  release:
-    types:
-      - published
   workflow_dispatch:
 
 env:
@@ -37,6 +34,7 @@ jobs:
           node-version: "18"
       - name: Build Frontend
         run: |
+          cp .env.prod.example .env
           npm ci
           npm run build
 
